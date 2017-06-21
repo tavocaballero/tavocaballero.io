@@ -1,0 +1,75 @@
+
+
+
+/* HTML Elements*/
+/* alphabetical order please*/
+body{
+    font-family: "industry", sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Framework Classes*/
+.grid {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+/*   flex-wrap: wrap;*/
+}
+
+.col-1{
+    width: 8.33%;
+    margin: 10px;
+}
+.col-2{
+    width: 16.66%;
+    margin: 10px;
+}
+.col-3{
+    width: 25%;
+    margin: 10px;
+}
+.col-4{
+    width: 33.33%;
+    margin: 10px;
+}
+.col-5{
+    width: 41.66%;
+    margin: 10px;
+}
+.col-6{
+    width: 50%;
+    margin: 10px;
+}
+.col-7{
+    width: 58.33%;
+    margin: 10px;
+}
+.col-8{
+    width: 66.66%;
+    margin: 10px;
+}
+.col-9{
+    width: 75%;
+    margin: 10px;
+}
+.col-10{
+    width: 83.33%;
+    margin: 10px;
+}
+.col-11{
+    width: 91.66%;
+    margin: 10px;
+}
+.col-12{
+    width: 100%;
+    margin: 10px;
+}

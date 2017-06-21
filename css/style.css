@@ -1,0 +1,681 @@
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6em;
+  background-color: #ECF0F1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: #263238;
+  text-decoration: none;
+}
+
+h1{
+    font-family: "raleway";
+    line-height: 1.0em;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+iframe{
+  position: relative;
+  margin-left: 2em;
+  padding-left: 2em;
+}
+footer{
+  background-color: #223238;
+  position: relative; bottom: 20;
+  display: block;
+  vertical-align: baseline;
+  padding: 50px;
+    text-align: center;
+}
+        footer p {
+        color: #555;
+        font: 400 16px/1 'open sans';
+        margin: 0 0 2em 0; }
+        footer p a {
+        color: #555;
+        font-weight: 700; }
+        footer p a:hover {
+        color: #000; }
+
+
+
+
+/* --------------------------------
+
+1. Auto-Hiding Navigation - Simple
+
+-------------------------------- */
+
+.auto-hide-header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #263238;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+.auto-hide-header::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.auto-hide-header.is-hidden {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+@media only screen and (min-width: 1024px) {
+  .auto-hide-header {
+    height: 80px;
+  }
+}
+
+.auto-hide-header .logo,
+.auto-hide-header .nav-trigger {
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.auto-hide-header .logo {
+  left: 5%;
+}
+.auto-hide-header .logo a, .auto-hide-header .logo img {
+  display: flex;
+}
+
+.auto-hide-header .nav-trigger {
+  /* vertically align its content */
+  display: table;
+  height: 100%;
+  padding: 0 1em;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #47575f;
+  font-weight: bold;
+  right: 0;
+  border-left: 1px solid #f2f2f2;
+}
+.auto-hide-header .nav-trigger span {
+  /* vertically align inside parent element */
+  display: table-cell;
+  vertical-align: middle;
+}
+.auto-hide-header .nav-trigger em, .auto-hide-header .nav-trigger em::after, .auto-hide-header .nav-trigger em::before {
+  /* this is the menu icon */
+  display: block;
+  position: relative;
+  height: 2px;
+  width: 22px;
+  background-color: #47575f;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.auto-hide-header .nav-trigger em {
+  /* this is the menu central line */
+  margin: 6px auto 14px;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+.auto-hide-header .nav-trigger em::before, .auto-hide-header .nav-trigger em::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+.auto-hide-header .nav-trigger em::before {
+  /* this is the menu icon top line */
+  -webkit-transform: translateY(-6px);
+      -ms-transform: translateY(-6px);
+          transform: translateY(-6px);
+}
+.auto-hide-header .nav-trigger em::after {
+  /* this is the menu icon bottom line */
+  -webkit-transform: translateY(6px);
+      -ms-transform: translateY(6px);
+          transform: translateY(6px);
+}
+@media only screen and (min-width: 1024px) {
+  .auto-hide-header .nav-trigger {
+    display: none;
+  }
+}
+
+.auto-hide-header.nav-open .nav-trigger em {
+  /* transform menu icon into a 'X' icon */
+  background-color: rgba(255, 255, 255, 0);
+}
+.auto-hide-header.nav-open .nav-trigger em::before {
+  /* rotate top line */
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.auto-hide-header.nav-open .nav-trigger em::after {
+  /* rotate bottom line */
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.primary-nav {
+  display: inline-block;
+  float: right;
+  height: 100%;
+  padding-right: 5%;
+}
+.primary-nav > ul {
+  position: absolute;
+  z-index: 2;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: none;
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.2);
+}
+.primary-nav > ul a {
+  /* target primary-nav links */
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  color: #ffffff;
+  font-size: 1.8rem;
+  border-top: 1px solid #f2f2f2;
+}
+.primary-nav > ul a:hover, .primary-nav > ul a.active {
+  color: #47575f;
+}
+@media only screen and (min-width: 1024px) {
+  .primary-nav {
+    /* vertically align its content */
+    display: table;
+  }
+  .primary-nav > ul {
+    /* vertically align inside parent element */
+    display: table-cell;
+    vertical-align: middle;
+    /* reset mobile style */
+    position: relative;
+    width: auto;
+    top: 0;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .primary-nav > ul::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .primary-nav > ul li {
+    display: inline-block;
+    float: left;
+    margin-right: 1.5em;
+  }
+  .primary-nav > ul li:last-of-type {
+    margin-right: 0;
+  }
+  .primary-nav > ul a {
+    /* reset mobile style */
+    height: auto;
+    line-height: normal;
+    padding: 0;
+    border: none;
+  }
+}
+
+.nav-open .primary-nav ul,
+.primary-nav ul:target {
+  /*
+    show primary nav - mobile only
+    :target is used to show navigation on no-js devices
+  */
+  display: block;
+}
+@media only screen and (min-width: 1024px) {
+  .nav-open .primary-nav ul,
+  .primary-nav ul:target {
+    display: table-cell;
+  }
+}
+
+
+/* --------------------------------
+
+2. Auto-Hiding Navigation - with Sub Nav
+
+-------------------------------- */
+.secondary-nav {
+  position: relative;
+  z-index: 1;
+  clear: both;
+  width: 100%;
+  height: 50px;
+  background-color: #fdb91a;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+.secondary-nav::after {
+  /* gradient on the right - to indicate it's possible to scroll */
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 35px;
+  background: transparent;
+  background: -webkit-linear-gradient(right, #fdb91a, rgba(37, 40, 61, 0));
+  background: linear-gradient(to left, #ffdd00, rgba(37, 40, 61, 0));
+  pointer-events: none;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+}
+.secondary-nav.nav-end::after {
+  opacity: 0;
+}
+.secondary-nav ul, .secondary-nav li, .secondary-nav a {
+  height: 100%;
+}
+.secondary-nav ul {
+  /* enables a flex context for all its direct children */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 5%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.secondary-nav ul::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.secondary-nav li {
+  display: inline-block;
+  float: left;
+  /* do not shrink - elements float on the right of the element */
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+.secondary-nav li:last-of-type {
+  padding-right: 20px;
+}
+.secondary-nav a {
+  display: block;
+  color: #ffffff;
+  opacity: .6;
+  line-height: 50px;
+  padding: 0 1em;
+}
+.secondary-nav a:hover, .secondary-nav a.active {
+  opacity: 1;
+}
+@media only screen and (min-width: 1024px) {
+  .secondary-nav {
+    height: 70px;
+    overflow: visible;
+  }
+  .secondary-nav ul {
+    /* reset mobile style */
+    display: block;
+    text-align: center;
+  }
+  .secondary-nav li {
+    /* reset mobile style */
+    float: none;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+  }
+  .secondary-nav a {
+    line-height: 70px;
+  }
+  .secondary-nav a.active {
+    box-shadow: inset 0 -3px #8F3985;
+  }
+}
+
+
+
+
+
+
+/* --------------------------------
+
+Main content
+
+-------------------------------- */
+.main-content {
+  padding: 60px 5% 2em;
+  overflow: hidden;
+}
+.main-content.sub-nav {
+  /* to be used if there is sub nav */
+  padding-top: 110px;
+}
+.main-content.sub-nav-hero {
+  /* to be used if there is hero image + subnav */
+  padding-top: 0;
+}
+.main-content.sub-nav-hero.secondary-nav-fixed {
+  margin-top: 50px;
+}
+.main-content p {
+  max-width: 1024px;
+  line-height: 1.6;
+  margin: 2em auto;
+  font-family: "industry", serif;
+  color: #a5a8a9;
+}
+@media only screen and (min-width: 1024px) {
+  .main-content {
+    padding-top: 80px;
+  }
+  .main-content.sub-nav {
+    padding-top: 150px;
+  }
+  .main-content.sub-nav-hero.secondary-nav-fixed {
+    margin-top: 70px;
+  }
+  .main-content p {
+    font-size: 2.4rem;
+  }
+}
+
+/*
+    adjust the positioning of in-page links
+    http://nicolasgallagher.com/jump-links-and-viewport-positioning/
+*/
+.main-content.sub-nav :target::before,
+.main-content.sub-nav-hero :target::before {
+  display: block;
+  content: "";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .main-content.sub-nav :target::before,
+  .main-content.sub-nav-hero :target::before {
+    margin-top: -70px;
+    height: 70px;
+  }
+}
+
+/* --------------------------------
+
+Intro Section
+
+-------------------------------- */
+.hero {
+  /* vertically align its content */
+  display: table;
+  width: 100%;
+  margin-top: 60px;
+  height: 300px;
+  background: url(../images/hombreFuergo.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero .hero-content {
+  /* vertically align inside parent element */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .hero {
+    height: 400px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .hero {
+    height: 600px;
+    margin-top: 80px;
+  }
+}
+
+/* --------------------------------
+
+        Custom classes
+
+-------------------------------- */
+
+.box{
+    width:100%;
+    display:block;
+    overflow:auto;
+    margin-bottom: 2em;
+}
+.box-height{
+    width:100%;
+    height: 300px;
+    padding: 1em;
+}
+.cutline{
+  font-size: 12px;
+  text-align: center;
+}
+.columnOverflow{
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        padding: 1.2em;
+}
+
+.yellow{
+    background-color: #fdb91a;
+}
+
+.red{
+    background-color: #ff004c;
+}
+.rosa-mexicano{
+  background-color: #fb0059;
+}
+
+figure{
+    text-align: center;
+    font-size: 14px;
+}
+
+#gradient
+{
+  width: 100%;
+  height: full;
+  padding: 0px;
+  margin: 0px;
+}
+
+.newspaper{
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 2;
+    column-gap: 1em;
+}
+@media only screen and (max-width: 600px) {
+  .newspaper{
+    column-count: 1;
+}
+}
+
+.firstcharacter{
+    float: left;
+    color: #903;
+    font-size: 85px;
+    line-height: 60px;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 2px;
+    font-family: "industry";
+}
+.story{
+  padding: .5em;
+  background-color: white;
+  width:100%;
+  display:block;
+  overflow:auto;
+  margin-bottom: .5em;
+}
+.story-top{
+  padding: .5em;
+  background-color: white;
+  width:100%;
+  display:block;
+  overflow:auto;
+  margin-top: 4em;
+  margin-bottom: .5em;
+}
+.story-headline{
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-bottom: 0;
+  margin-top: 6em;
+  color: white;
+  font-size: 36px;
+}
+.story-deck{
+  padding-left: .8em;
+  padding-right: .5em;
+  margin-bottom: 0;
+  margin-top: 10px;
+  color: white;
+  background-color: black;
+  font-size: 22px;
+  font-family: inherit;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: inherit;
+}
+
+.text-center{
+    text-align: center;
+    position: relative;
+    padding-top: 1em;
+}
+.width{
+    width: 100vw;
+}
+
+.wander-content{
+  padding: .5em;
+}
+.wander-story{
+  padding: .5em;
+  background-color: white;
+  width:100%;
+  height: 250px;
+  margin-bottom: .5em;
+}
+
+.wander-hero-top {
+  /* vertically align its content */
+  display: table;
+  width: 100%;
+  margin-top: 60px;
+  height: 300px;
+  background: url(../images/alianzArena.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.wander-hero-capitol{
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+  height: 300px;
+  background: url(../images/capitol.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.wander-hero-tamasopo{
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+  height: 300px;
+  background: url(../images/tamasopo.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+
+.wander-hero-cabanas{
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+  height: 440px;
+  background: url(../images/cabanas.jpg) no-repeat center center;
+  background-size: cover;
+}
+@media only screen and (max-width: 600px) {
+  .wander-hero-cabanas{
+    display:block;
+    overflow:auto;
+}
+}
+
+
+.wander-super-size-greet{
+  background-color: #223238;
+  width: 100%;
+  height: 50vh;
+}
+.wander-super-size-greet-text{
+  font-size: 7em;
+  font-family: "Abel";
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative; top: 180px;
+}
+
+@media only screen and (max-width: 600px) {
+  .wander-super-size-greet-text{
+    font-size: 5em;
+}
+}
+
+.poster{
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
